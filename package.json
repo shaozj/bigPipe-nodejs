@@ -1,0 +1,33 @@
+{
+  "name": "bigpipe-nodejs",
+  "version": "1.0.0",
+  "description": "implement bigPipe with nodejs",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/shaozj/bigPipe-nodejs.git"
+  },
+  "keywords": [
+    "bigpipe",
+    "node",
+    "nodejs"
+  ],
+  "author": "shaozj",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/shaozj/bigPipe-nodejs/issues"
+  },
+  "homepage": "https://github.com/shaozj/bigPipe-nodejs#readme",
+  "publishConfig": {
+    "registry": "http://registry.npm.alibaba-inc.com"
+  },
+  "dependencies": {
+    "express": "3.x.x",
+    "consolidate": "latest",
+    "jade": "latest"
+  }
+}
+
