@@ -14,11 +14,25 @@ var temp = {
   s2: jade.compile(fs.readFileSync(path.join(__dirname, 'views', 's2.jade')))
 }
 
+var getData = {
+  d1: function (fn) {
+    setTimeout(fn, 3000, null, {content: "Hello, I'm the first section."})
+  },
+  d2: function (fn) {
+    setTimeout(fn, 5000, null, {content: "Hello, I'm the second section."})
+  }
+}
+
 app.use(function(req, res){
-  res.render('layout', {
-    s1: temp.s1({ content: "Hello, I'm the first section." }),
-    s2: temp.s2({ content: "Hello, I'm the second section." })
+  getData.d1(function (err, s1data){
+    getData.d2(function (err, s2data){
+      res.render('layout', {
+        s1: temp.s1(s1data),
+        s2: temp.s2(s2data)
+      })
+    })
   })
 })
 
 app.listen(3000);
+
