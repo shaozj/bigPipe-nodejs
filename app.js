@@ -2,6 +2,7 @@ var express = require('express');
 var cons = require('consolidate');
 var jade = require('jade');
 var path = require('path');
+var fs = require('fs');
 
 var app = express();
 
@@ -23,16 +24,33 @@ var getData = {
   }
 }
 
-app.use(function(req, res){
-  getData.d1(function (err, s1data){
-    getData.d2(function (err, s2data){
-      res.render('layout', {
-        s1: temp.s1(s1data),
-        s2: temp.s2(s2data)
-      })
-    })
-  })
+var static = express.static(path.join(__dirname, 'static'));
+
+app.use('/static', function (req, res, next) {
+  setTimeout(static, 2000, req, res, next);
 })
+
+app.use(function(req, res){
+  var n = 2;
+  var result = {};
+
+  getData.d1(function (err, s1data) {
+    result.s1data = s1data;
+    --n || writeResult();
+  });
+
+  getData.d2(function (err, s2data) {
+    result.s2data = s2data;
+    --n || writeResult();
+  });
+
+  function writeResult() {
+    res.render('layout', {
+      s1: temp.s1(result.s1data),
+      s2: temp.s2(result.s2data)
+    });
+  }
+});
 
 app.listen(3000);
 
