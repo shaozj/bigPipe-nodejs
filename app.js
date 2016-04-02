@@ -31,17 +31,21 @@ app.use('/static', function (req, res, next) {
 })
 
 app.use(function(req, res){
+  res.render('layout', function (err, str) {
+    if(err) return res.req.next(err);
+    res.setHeader('content-type', 'text/html; charset=utf-8');
+    res.write(str);
+  })
   var n = 2;
-  var result = {};
 
   getData.d1(function (err, s1data) {
-    result.s1data = s1data;
-    --n || writeResult();
+    res.write('<section id="s1">' + temp.s1(s1data) + '</section>');
+    --n || res.end();
   });
 
   getData.d2(function (err, s2data) {
-    result.s2data = s2data;
-    --n || writeResult();
+    res.write('<section id="s2">' + temp.s2(s2data) + '</section>');
+    --n || res.end();
   });
 
   function writeResult() {
