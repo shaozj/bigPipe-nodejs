@@ -47,13 +47,6 @@ app.use(function(req, res){
     res.write('<section id="s2">' + temp.s2(s2data) + '</section>');
     --n || res.end();
   });
-
-  function writeResult() {
-    res.render('layout', {
-      s1: temp.s1(result.s1data),
-      s2: temp.s2(result.s2data)
-    });
-  }
 });
 
 app.listen(3000);
