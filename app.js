@@ -35,6 +35,7 @@ app.use(function(req, res){
     if(err) return res.req.next(err);
     res.setHeader('content-type', 'text/html; charset=utf-8');
     res.write(str);
+    res.write('<section id="s1"></section><section id="s2"></section>');
   })
   var n = 2;
 
