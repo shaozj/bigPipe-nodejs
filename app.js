@@ -27,7 +27,7 @@ var getData = {
 var static = express.static(path.join(__dirname, 'static'));
 
 app.use('/static', function (req, res, next) {
-  setTimeout(static, 2000, req, res, next);
+  setTimeout(static, 3000, req, res, next);
 });
 
 app.use(function(req, res){
